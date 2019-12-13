@@ -1,0 +1,48 @@
+- defaultTab: nodes
+  description: Test Job to create error
+  executionEnabled: true
+  id: 37a3c281-1bee-4b0d-913f-2a5a61a527e9
+  loglevel: INFO
+  multipleExecutions: true
+  name: ErrorCreatorJob
+  nodeFilterEditable: false
+  nodefilters:
+    dispatch:
+      excludePrecedence: true
+      keepgoing: false
+      rankOrder: ascending
+      successOnEmptyNodeFilter: false
+      threadcount: '1'
+    filter: 'name: remoteNode-VM'
+  nodesSelectedByDefault: true
+  options:
+  - name: status
+    required: true
+    values:
+    - Pass
+    - Fail
+    valuesListDelimiter: ','
+  scheduleEnabled: true
+  sequence:
+    commands:
+    - errorhandler:
+        jobref:
+          args: -jobName ${job.name} -status ${option.status} -resultCode ${result.resultCode}
+          group: ''
+          name: ErrorHandlerJob
+          nodeStep: 'true'
+          uuid: cbd2c310-61b1-4e2c-a73e-4965ee2097a6
+      script: |-
+        #!/bin/bash
+        #!/usr/bin/python3
+
+        status=@option.status@
+        if [ "${status}" == "Fail" ]; then
+        echo "Error Occured"
+        exit 100
+        else
+        echo "No Error Occured"
+        fi
+    keepgoing: false
+    strategy: node-first
+  uuid: 37a3c281-1bee-4b0d-913f-2a5a61a527e9

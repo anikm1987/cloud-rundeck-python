@@ -1,0 +1,6 @@
+{
+  "rundeckInfo": {
+    "authToken": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+    "testURL": "<rundeck-url>/api/<api_version>/job/<jobid>/run"
+  }
+}

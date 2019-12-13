@@ -1,0 +1,42 @@
+- defaultTab: nodes
+  description: Job to handle error
+  executionEnabled: true
+  id: cbd2c310-61b1-4e2c-a73e-4965ee2097a6
+  loglevel: INFO
+  multipleExecutions: true
+  name: ErrorHandlerJob
+  nodeFilterEditable: false
+  nodefilters:
+    dispatch:
+      excludePrecedence: true
+      keepgoing: false
+      rankOrder: ascending
+      successOnEmptyNodeFilter: false
+      threadcount: '1'
+    filter: 'name: remoteNode-VM'
+  nodesSelectedByDefault: true
+  options:
+  - name: jobName
+    required: true
+  - name: resultCode
+  - name: status
+  scheduleEnabled: true
+  sequence:
+    commands:
+    - script: |-
+        #!/bin/bash
+        #!/usr/bin/python3
+        status=@option.status@
+        jobName=@option.jobName@
+        resultCode=@option.resultCode@
+
+        echo "Hello from error handler"
+        echo "Values Received"
+        echo "===================================================================="
+        echo "status         : ${status}"
+        echo "jobName         : ${jobName}"
+        echo "resultCode         : ${resultCode}"
+        echo "===================================================================="
+    keepgoing: false
+    strategy: node-first
+  uuid: cbd2c310-61b1-4e2c-a73e-4965ee2097a6
