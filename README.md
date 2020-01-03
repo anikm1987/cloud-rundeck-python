@@ -1,10 +1,9 @@
-# rundeck_python
-##Rundeck and Python Automation
+# Rundeck and Python Automation
 
-Contains -
+## Contains -
 
 	- rundeck
-		Two yml file for creating rundeck job
+		Two yaml file for creating rundeck job
 			ErrorCreatorJob.yaml
 			ErrorHandlerJob.yaml
 		Sample job to demonstrate how to do error handling using step jobs in rundeck
