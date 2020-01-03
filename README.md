@@ -9,6 +9,11 @@ Contains -
 			ErrorHandlerJob.yaml
 		Sample job to demonstrate how to do error handling using step jobs in rundeck
 		
+	- rundeck
+		yml file for creating rundeck job
+			TestPythonInsideBash.yaml
+		Sample job to demonstrate how to call python code from bash with arguments inside rundeck
+		
 	- python_script
 	
 		TestRundeckJobRun_Status.py 

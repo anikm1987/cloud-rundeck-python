@@ -1,0 +1,30 @@
+- defaultTab: nodes
+  description: Test Job to call Python from bash
+  executionEnabled: true
+  id: 78199814-eaf9-488e-99c7-a72c643bd9d1
+  loglevel: INFO
+  multipleExecutions: true
+  name: TestPythonInsideBash
+  nodeFilterEditable: false
+  nodefilters:
+    dispatch:
+      excludePrecedence: true
+      keepgoing: false
+      rankOrder: ascending
+      successOnEmptyNodeFilter: false
+      threadcount: '1'
+    filter: 'name: remoteNode-VM'
+  nodesSelectedByDefault: true
+  options:
+  - name: inputText
+  scheduleEnabled: true
+  sequence:
+    commands:
+    - script: "#!/bin/bash\n#!/usr/bin/python3\n\ninputText=@option.inputText@\necho\
+        \ \"inputText received : ${inputText}\" \n\nfunction decode {\narg_string=\"\
+        $1\" python3 - <<END\nfrom urllib.parse import unquote\nimport os\nprint(unquote(os.environ['arg_string']))\
+        \ \nEND\n}\n\ndecoded_string=$(decode ${inputText})\n\necho \"decoded_string\
+        \  : ${decoded_string}\""
+    keepgoing: false
+    strategy: node-first
+  uuid: 78199814-eaf9-488e-99c7-a72c643bd9d1
